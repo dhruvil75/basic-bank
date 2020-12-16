@@ -18,7 +18,26 @@ const getSalt = () =>{
   .slice(0, 10)
 }
 
+
+const issueJWT = user => {
+  const email = user.email;
+  const expiresIn = '1d';
+  
+  const payload = {
+    email,
+    iat: Date.now()
+  };
+  const signedToken = jsonwebtoken.sign(payload, secret, { expiresIn: expiresIn });
+
+  return {
+    token: "JWT " + signedToken,
+    expires: expiresIn
+  }
+}
+
+
 module.exports = {
   getCryptohash,
   getSalt,
+  issueJWT,
 }

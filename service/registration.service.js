@@ -11,13 +11,12 @@ const  registerUser = (email, password, res) =>{
       email,
       auth,
     })
-    user.save().then(res=>{
-      console.log('res ->',res);
-      res.sendStatus(200);
-    }).catch(err=>{
-      console.log('err ->',err.message);
-      res.send("User Already Registered")
-    })
+    user.save()
+      .then(res=>{
+        res.sendStatus(200);
+      }).catch(err=>{
+        res.send("User Already Registered")
+      })
 
 }
 
